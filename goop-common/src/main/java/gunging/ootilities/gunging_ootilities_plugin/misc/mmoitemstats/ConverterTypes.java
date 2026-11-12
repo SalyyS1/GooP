@@ -36,6 +36,19 @@ public class ConverterTypes {
     public static boolean smithUpgrades = false;
     public static boolean smithGemstones = false;
     public static boolean generateTemplates = false;
+    /** Convert items taken out of furnaces (uses the OnCraft settings) */
+    public static boolean convertOnSmelt = false;
+    /** Convert the inventory of players when they join (uses the OnPickup settings) */
+    public static boolean convertOnJoin = false;
+    /** If not empty, only convert in these worlds */
+    @NotNull public static java.util.List<String> converterWorlds = new java.util.ArrayList<>();
+
+    /** @return If the converter runs in this world */
+    public static boolean isConverterWorld(@Nullable org.bukkit.World world) {
+        if (converterWorlds.isEmpty() || world == null) { return true; }
+        for (String w : converterWorlds) { if (w.equalsIgnoreCase(world.getName()) || w.equalsIgnoreCase(world.getKey().toString())) { return true; } }
+        return false;
+    }
 
     /**
      * @param reason Reason for converting
@@ -119,6 +132,9 @@ public class ConverterTypes {
             preciseIDConversion = ofgStorage.getBoolean("Differentiate_Items", false);
             generateTemplates = ofgStorage.getBoolean("Generate_Templates", false);
             blockMythicMobs = !(ofgStorage.getBoolean("Allow_MythicItems", true));
+            convertOnSmelt = ofgStorage.getBoolean("Convert_On_Smelt", false);
+            convertOnJoin = ofgStorage.getBoolean("Convert_On_Join", false);
+            converterWorlds = ofgStorage.getStringList("Converter_Worlds");
 
             ConfigurationSection keepKeep = ofgStorage.getConfigurationSection("Smithing");
             if (keepKeep != null) {

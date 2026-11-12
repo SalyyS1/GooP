@@ -1,0 +1,18 @@
+#
+# Runs console commands (and /goop command chains) at real-world times, in the server's time zone.
+#
+#   Cron: minute hour day-of-month month day-of-week
+#         *  any        5  exact       1-5  range       */15  every 15
+#         1,15 list     MON..SUN / JAN..DEC names also work
+#
+#   "0 20 * * *"      every day at 20:00
+#   "*/30 * * * *"    every 30 minutes
+#   "0 18 * * SAT"    Saturdays at 18:00
+#
+Schedules:
+  example_evening_boss:
+    Enabled: false
+    Cron: "0 20 * * *"
+    Commands:
+      - "say The evening boss has awakened!"
+      - "goop chance 50 say ...and it brought friends."

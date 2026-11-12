@@ -501,6 +501,8 @@ public final class Gunging_Ootilities_Plugin extends JavaPlugin implements Liste
         if (GooP_MinecraftVersions.GetMinecraftVersion() >= 14.0) { getServer().getPluginManager().registerEvents(new JSONPlacerUtils(), theMain); }
 
         if (foundMMOItems) { getServer().getPluginManager().registerEvents(new OnApplyCommand(), theMain); }
+        getServer().getPluginManager().registerEvents(new gunging.ootilities.gunging_ootilities_plugin.events.PrivateDrops(), theMain);
+        getServer().getPluginManager().registerEvents(new gunging.ootilities.gunging_ootilities_plugin.events.RespawnPoints(), theMain);
         if (foundMythicMobs) { getServer().getPluginManager().registerEvents(new GooPMythicMobs(), theMain); }
         if (foundTowny) {
             try { new GooPTowny().register(theMain); }
@@ -965,6 +967,12 @@ public final class Gunging_Ootilities_Plugin extends JavaPlugin implements Liste
             ConverterTypes.ConverterReload(); }
 
         if (foundMythicMobs) { GooPMythicMobs.ReloadListPlaceholders(theOots); }
+
+        // Private drops, deconstruction tables and the cron scheduler
+        gunging.ootilities.gunging_ootilities_plugin.events.PrivateDrops.reload(this);
+        gunging.ootilities.gunging_ootilities_plugin.misc.DeconstructTables.reload(this);
+        gunging.ootilities.gunging_ootilities_plugin.misc.GooPScheduler.reload(this);
+        gunging.ootilities.gunging_ootilities_plugin.events.RespawnPoints.reload(this);
 
         // Reload the big ones gg
         CSManager.ReloadStructures(theOots);

@@ -1,0 +1,18 @@
+#
+# Respawn at the closest respawn point (in the same world) that the player may use.
+#
+#   Unlockable: optional GooP unlockable the player needs, for example set with
+#               '/goop unlockables unlock <player> town_riverside' when they discover the town.
+#   OverrideBeds: if false, beds and respawn anchors still take priority.
+#
+Enabled: false
+OverrideBeds: false
+Points:
+  example_town:
+    World: world
+    X: 0.5
+    Y: 64
+    Z: 0.5
+    Yaw: 0
+    Pitch: 0
+    Unlockable: ""

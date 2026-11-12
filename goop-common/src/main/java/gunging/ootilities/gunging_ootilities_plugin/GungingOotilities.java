@@ -407,6 +407,9 @@ public class GungingOotilities implements CommandExecutor {
                 case permission:
                     { Boolean result = GooPCmdPermission.run(ctx); if (result != null) { return result; } }
                     break;
+                case station:
+                    { Boolean result = GooPCmdStation.run(ctx); if (result != null) { return result; } }
+                    break;
                 //endregion
                 default: break;
             }

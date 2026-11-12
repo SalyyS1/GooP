@@ -152,6 +152,32 @@ public class OnApplyCommand implements Listener {
         }
     }
 
+    /** Smelted items count as crafted for the converter (Convert_On_Smelt) */
+    @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
+    public void OnSmelt(org.bukkit.event.inventory.FurnaceSmeltEvent event) {
+        if (!ConverterTypes.convertOnSmelt || !ConverterTypes.hasConverterOptions(ConvertingReason.CRAFT)) { return; }
+        if (!ConverterTypes.isConverterWorld(event.getBlock().getWorld())) { return; }
+        ItemStack converted = convertOrNull(event.getResult(), null, ConvertingReason.CRAFT, null);
+        if (converted != null) { event.setResult(converted); }
+    }
+
+    /** Converts the inventory of joining players, a second after they join (Convert_On_Join) */
+    @EventHandler
+    public void OnJoinConvert(org.bukkit.event.player.PlayerJoinEvent event) {
+        if (!ConverterTypes.convertOnJoin || !ConverterTypes.hasConverterOptions(ConvertingReason.PICKUP)) { return; }
+        Player player = event.getPlayer();
+        org.bukkit.Bukkit.getScheduler().runTaskLater(Gunging_Ootilities_Plugin.theMain, () -> {
+            if (!player.isOnline() || !ConverterTypes.isConverterWorld(player.getWorld())) { return; }
+            ItemStack[] contents = player.getInventory().getContents();
+            boolean changed = false;
+            for (int i = 0; i < contents.length; i++) {
+                ItemStack converted = convertOrNull(contents[i], player, ConvertingReason.PICKUP, null);
+                if (converted != null) { contents[i] = converted; changed = true; }
+            }
+            if (changed) { player.getInventory().setContents(contents); }
+        }, 20L);
+    }
+
     @Nullable ItemStack convertOrNull(@Nullable ItemStack item, @Nullable Player p, @NotNull ConvertingReason reason, @Nullable RefSimulator<ConverterPerTier> cptRet) {
 
         if (OotilityCeption.IsAirNullAllowed(item)) { return null; }
@@ -1046,6 +1072,7 @@ public class OnApplyCommand implements Listener {
     public void OnItemPickup(EntityPickupItemEvent event) {
         if (!ConverterTypes.hasConverterOptions(ConvertingReason.PICKUP)) { return; }
         if(!(event.getEntity() instanceof Player)) { return; }
+        if (!ConverterTypes.isConverterWorld(event.getEntity().getWorld())) { return; }
 
         // If it wasn't cancelled and the picker upper was a player
         if (!event.isCancelled()) {

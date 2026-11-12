@@ -44,6 +44,15 @@
 #
 MMOItems_Type_Prefix: ""
 
+# ---------------------------- Extra triggers
+#   Convert_On_Smelt: items taken from furnaces are converted (uses the OnCraft settings).
+#   Convert_On_Join: the inventory of players is converted when they join (uses OnPickup).
+#   Converter_Worlds: if not empty, the converter only runs in these worlds (names or keys).
+#
+Convert_On_Smelt: false
+Convert_On_Join: false
+Converter_Worlds: []
+
 # ---------------------------- Differentiate_Items
 #   Advanced Item Conversion.
 #

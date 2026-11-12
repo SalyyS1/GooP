@@ -23,5 +23,6 @@ public enum GooP_Commands {
     vault,
     sudo,
     permission,
-    unlockables
+    unlockables,
+    station
 }

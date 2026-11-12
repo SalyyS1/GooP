@@ -1,0 +1,14 @@
+#
+# Private drops: what a mob drops belongs for a while to the player who dealt it the most damage.
+# Nobody else (nor hoppers) can pick it up until the ownership ends.
+#
+Enabled: false
+
+# Seconds an item stays private before anyone can pick it up
+OwnershipSeconds: 60
+
+# Release a player's items right away when they leave the server
+ReleaseOnQuit: true
+
+# Let members of the owner's MMOCore party pick the items up too
+ShareWithMMOCoreParty: false

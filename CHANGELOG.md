@@ -2,6 +2,22 @@
 
 ## 2.0.0-beta.2 (unreleased)
 
+### New features
+- `/goop station <reforge|upgrade|repair|deconstruct> <player> <slot> [cost] [success%] [break%] [confirm]`:
+  one command for crafting-station buttons. Charges a Vault cost, rolls for success, can
+  break the item on failure, and with `confirm` asks for a second click within 5 seconds.
+  Put it in a Station Container slot's click commands to build forges and salvage benches.
+- Deconstruction tables (`deconstruct-tables.yml`): what items break down into, matched and
+  produced with GooP item filters, with amount ranges and chances.
+- Private drops (`private-drops.yml`): a mob's drops belong to the player who dealt the most
+  damage for a while; nobody else, nor hoppers, can take them. Optional MMOCore party sharing.
+- Cron scheduler (`scheduler.yml`): run console and `/goop` commands at real-world times
+  (`0 20 * * *` = every day at 20:00).
+- Respawn points (`respawn-points.yml`): respawn at the closest point in the same world,
+  optionally locked behind a GooP unlockable.
+- Converter: `Convert_On_Smelt`, `Convert_On_Join` and `Converter_Worlds` in
+  `mmoitems-converter.yml`.
+
 ### Fixes
 - Worlds that held physical containers or custom structures can be unloaded and garbage
   collected (GooP kept every such world in memory, noticeable with temporary dungeon worlds).

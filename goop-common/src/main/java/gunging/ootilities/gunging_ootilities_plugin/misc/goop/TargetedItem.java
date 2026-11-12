@@ -50,6 +50,14 @@ public class TargetedItem {
     /**
      * Overwrites the contents of this place yes.
      */
+    /** Puts this item in the slot (or dropped entity) right away, regardless of the command's result */
+    public void Overwrite(@org.jetbrains.annotations.Nullable ItemStack item) {
+        switch (type) {
+            case PLAYER: player_loc.setItem(item); break;
+            case DROPPED: OotilityCeption.SetDroppedItemItemStack(dropped_item, item); break;
+        }
+    }
+
     public void ApplyChanges() {
 
         switch (type) {
