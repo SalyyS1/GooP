@@ -43,6 +43,12 @@ sh tools/compat/check-matrix.sh    # check both jars against every supported Pap
 MythicMobs and MMO method or field GooP uses exists, with the same class/interface kind, on
 each supported version, without starting a server.
 
+## Releasing
+
+Set the version in the poms (`mvn versions:set -DnewVersion=2.0.0` or edit them), give
+`CHANGELOG.md` a `## 2.0.0 ...` section, commit, then push a `v2.0.0` tag. The Release workflow
+builds both jars, runs the compatibility matrix and publishes them with checksums.
+
 ## Layout
 
 | Path | Contents |

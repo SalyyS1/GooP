@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.0-beta.2 (unreleased)
+
+### Fixes
+- Worlds that held physical containers or custom structures can be unloaded and garbage
+  collected (GooP kept every such world in memory, noticeable with temporary dungeon worlds).
+
 ## 2.0.0-beta.1 (2026-11-12)
 
 ### Compatibility
