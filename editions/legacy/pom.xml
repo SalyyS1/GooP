@@ -8,7 +8,7 @@
     <parent>
         <groupId>gunging.ootilities</groupId>
         <artifactId>goop-editions</artifactId>
-        <version>2.0.0-SNAPSHOT</version>
+        <version>2.0.0-beta.1</version>
     </parent>
 
     <artifactId>goop-legacy</artifactId>

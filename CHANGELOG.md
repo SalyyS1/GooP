@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.0.0 (unreleased)
+## 2.0.0-beta.1 (2026-11-12)
 
 ### Compatibility
 - Two editions built from one source: `modern` for Paper/Purpur 1.21.1 – 26.x and `legacy`
